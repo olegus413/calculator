@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>Калькулятор</title>
     <link rel="stylesheet" type="text/css" href="for_calc.css"/>
-
+    <script src="js_calc.js"></script>
 </head>
 <body>
 <input id="num1"/>
 <div id="operator_buttons">
-    <button id="plus" class="operator" onclick="op='+'">+</button>
-    <button id="minus" class="operator" onclick="op='-'">-</button>
-    <button id="umnojit" class="operator" onclick="op='*'">*</button>
-    <button id="delit" class="operator" onclick="op='/'">/</button>
+    <button id="plus" class="operator" onclick="op='+';calc()">+</button>
+    <button id="minus" class="operator" onclick="op='-';calc()">-</button>
+    <button id="umnojit" class="operator" onclick="op='*';calc()">*</button>
+    <button id="delit" class="operator" onclick="op='/';calc()">/</button>
 </div>
-<script src="js_calc.js"></script>
 <input id="num2"/>
 <button onclick="calc()">Ответ</button>
+<p id="prom"></p>
 <p id="result"></p>
 </body>
 </html>
