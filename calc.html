@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Калькулятор</title>
+    <title>Калькулятор Олега</title>
     <link rel="stylesheet" type="text/css" href="for_calc.css"/>
     <script src="js_calc.js"></script>
 </head>
+
 <body>
-<input id="num1"/>
+
+<input placeholder="введите число №1" id="num1"/>
+
 <div id="operator_buttons">
-    <button id="plus" class="operator" onclick="op='+';calc()">+</button>
-    <button id="minus" class="operator" onclick="op='-';calc()">-</button>
-    <button id="umnojit" class="operator" onclick="op='*';calc()">*</button>
-    <button id="delit" class="operator" onclick="op='/';calc()">/</button>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+    <button id="umnojit">*</button>
+    <button id="delit">/</button>
 </div>
-<input id="num2"/>
-<button onclick="calc()">Ответ</button>
-<p id="prom"></p>
-<p id="result"></p>
+<div id="out">
+<input placeholder="введите число №2" id="num2"/>
+    <button id="clear">Очистить поля</button>
+</div>
+<div id="otvet">
+    <br>
+    <a id="pr">промежуточное значение</a>
+    <a id="prom"></a>
+    <br><br>
+    <a id="itog">результат</a>
+    <a id="result"></a>
+</div>
+
 </body>
 </html>
