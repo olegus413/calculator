@@ -4,60 +4,92 @@ window.onload = function () {
     let delit = document.getElementById('delit');
     let umnojit = document.getElementById('umnojit');
     let result;
-    let num1;
+    let num;
     let num2;
     let prom = 0;
+    let oper;
+    let deistv = [];
 
     function vvod() {
-        num1 = Number(document.getElementById('num1').value);
-        num2 = Number(document.getElementById('num2').value);
+        num = Number(document.getElementById('num').value);
+    }
+
+    function history() {
+        deistv.push(num, oper);
+        document.getElementById('history').innerHTML = deistv.join(' ');
+
     }
 
     function vivod() {
         document.getElementById('prom').innerHTML = prom;
         document.getElementById('result').innerHTML = result;
+        deistv.push(num2, ' = ', result);
+        document.getElementById('history').innerHTML = deistv.join(' ');
+
     }
 
+    equal.onclick = function () {
+        num2 = Number(document.getElementById('num').value);
+        if (oper === '+') {
+            result = num + num2;
+            prom = num;
+            prom = prom + num2;
+        } else if (oper === '-') {
+            result = num - num2;
+            prom = num;
+            prom = prom - num2;
+
+        } else if (oper === '*') {
+            result = num * num2;
+            prom = num;
+            prom = prom * num2;
+        } else if (oper === '/') {
+            result = num / num2;
+        }
+        vivod();
+
+
+    }
     clear.onclick = function () {
-        num1 = 0;
+        num = 0;
         num2 = 0;
         prom = 0;
-        document.getElementById('num1').value = '';
-        document.getElementById('num2').value = '';
+        document.getElementById('num').value = '';
         document.getElementById('prom').innerHTML = '';
         document.getElementById('result').innerHTML = '';
+        document.getElementById('history').innerHTML = '';
     }
 
     plus.onclick = function () {
         vvod();
-        result = num1 + num2;
-        prom = prom + num2;
-        vivod();
+        oper = '+';
+        document.getElementById('num').value = '';
+        history();
     }
 
     minus.onclick = function () {
         vvod();
-        result = num1 - num2;
-        prom = prom - num2;
-        vivod()
+        oper = '-';
+        document.getElementById('num').value = '';
+        history();
     }
 
     umnojit.onclick = function () {
         vvod();
-        result = num1 * num2;
-        prom = prom * num2;
-        vivod();
+        oper = '*';
+        document.getElementById('num').value = '';
+        history();
     }
 
     delit.onclick = function () {
         vvod();
-        if (num1 === 0 || num2 === 0) {
+        if (num === 0 || num2 === 0) {
             document.getElementById('vivod').innerHTML = 'Введите корректные данные';
         } else {
-            result = num1 / num2;
-            prom = prom / num2;
-            vivod();
+            oper = '/';
         }
+        document.getElementById('num').value = '';
+        history();
     }
 
 
