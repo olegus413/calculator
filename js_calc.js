@@ -3,94 +3,102 @@ window.onload = function () {
     let minus = document.getElementById('minus');
     let delit = document.getElementById('delit');
     let umnojit = document.getElementById('umnojit');
+    let equal = document.getElementById('equal');
+    let clear = document.getElementById('clear');
     let result;
-    let num;
-    let num2;
     let prom = 0;
     let oper;
-    let deistv = [];
+    //let deistv = [];
+    let promejut = []
+    let num = [];
 
     function vvod() {
-        num = Number(document.getElementById('num').value);
+        num.push(Number(document.getElementById('num').value));
+
     }
 
-    function history() {
-        deistv.push(num, oper);
-        document.getElementById('history').innerHTML = deistv.join(' ');
+    /*function history() {
+        promejut.push(num, oper);
+        document.getElementById('history').innerHTML = promejut.join(' ');
+
+    }*/
+
+    function postOperHist() {
+        promejut.push(num);
+        document.getElementById('history').innerHTML = promejut.join(' ');
 
     }
 
     function vivod() {
         document.getElementById('prom').innerHTML = prom;
         document.getElementById('result').innerHTML = result;
-        deistv.push(num2, ' = ', result);
-        document.getElementById('history').innerHTML = deistv.join(' ');
-
+        //deistv.push(num, ' = ', result);
     }
 
-    equal.onclick = function () {
-        num2 = Number(document.getElementById('num').value);
-        if (oper === '+') {
-            result = num + num2;
-            prom = num;
-            prom = prom + num2;
-        } else if (oper === '-') {
-            result = num - num2;
-            prom = num;
-            prom = prom - num2;
-
-        } else if (oper === '*') {
-            result = num * num2;
-            prom = num;
-            prom = prom * num2;
-        } else if (oper === '/') {
-            result = num / num2;
-        }
-        vivod();
-
-
-    }
-    clear.onclick = function () {
+    clear.addEventListener('click', function (e) {
         num = 0;
-        num2 = 0;
         prom = 0;
         document.getElementById('num').value = '';
         document.getElementById('prom').innerHTML = '';
         document.getElementById('result').innerHTML = '';
         document.getElementById('history').innerHTML = '';
-    }
+    })
 
-    plus.onclick = function () {
-        vvod();
+
+    plus.addEventListener("click", function (e) {
         oper = '+';
-        document.getElementById('num').value = '';
-        history();
-    }
-
-    minus.onclick = function () {
         vvod();
+        document.getElementById('num').value = '';
+        //history();
+    })
+
+    minus.addEventListener("click", function (e) {
         oper = '-';
-        document.getElementById('num').value = '';
-        history();
-    }
-
-    umnojit.onclick = function () {
         vvod();
+        document.getElementById('num').value = '';
+       // history();
+    })
+
+    umnojit.addEventListener("click", function (e) {
         oper = '*';
-        document.getElementById('num').value = '';
-        history();
-    }
-
-    delit.onclick = function () {
         vvod();
-        if (num === 0 || num2 === 0) {
+        document.getElementById('num').value = '';
+      // history();
+    })
+
+    delit.addEventListener("click", function () {
+        if (num === 0 || num[num.length - 1] === 0) {
             document.getElementById('vivod').innerHTML = 'Введите корректные данные';
         } else {
             oper = '/';
+            vvod();
         }
         document.getElementById('num').value = '';
-        history();
-    }
+      // history();
+    })
+
+
+    equal.addEventListener('click', function (e) {
+        console.log(oper);
+        if (oper === '+') {
+            vvod();
+            result = num + num[num.length - 1];
+            console.log(num);
+            console.log(result);
+        } else if (oper === '-') {
+            vvod();
+            prom = num - num[num.length - 1];
+        } else if (oper === '*') {
+            vvod();
+            prom = num + num[num.length - 1];
+        } else if (oper === '/') {
+            vvod();
+
+            prom = num / num[num.length - 1];
+        }
+        vivod();
+
+    })
 
 
 }
