@@ -12,24 +12,19 @@ window.onload = function () {
     let num = 0;
 
 
+
     function vvod() {
-        let x = document.getElementById('number').value;
-        if (x === null || x === "") {
-            alert(" вы здесь если не ввели число \n                     или \n потому что хотите поменять знак действия");
-            return false;
-        } else {
-            arr.push(Number(document.getElementById('number').value));
-            document.getElementById('number').value = '';
-        }
+
+        arr.push(Number(document.getElementById('number').value));
+        document.getElementById('number').value = '';
+
     }
 
 
     function vivod() {
         document.getElementById('result').innerHTML = result;
-
         document.getElementById('history').innerHTML = arr.join('');
     }
-
 
 
 
@@ -37,18 +32,15 @@ window.onload = function () {
         vvod();
         if (arr[arr.length - 1] !== 'string') {
             arr.push(operation);
-            console.log(arr);
-        } else if (arr[arr.length - 1] === 'string' && arr[arr.length - 2] === 'string' )   {
-            delete arr[arr.length - 2];
+            operation = '';
         }
+
         operation = '';
         document.getElementById('history').innerHTML = arr.join('');
-
     }
 
     function clearFunc() {
         arr = [];
-
         num1 = 0;
         num = 0;
         result = 0;
@@ -67,23 +59,36 @@ window.onload = function () {
 
 
     plus.addEventListener("click", function (e) {
-        operation = '+';
-        forDeistvAndHist();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '+';
+            forDeistvAndHist();}
+
     })
 
     minus.addEventListener("click", function (e) {
-        operation = '-';
-        forDeistvAndHist();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '-';
+            forDeistvAndHist();}
     })
 
     umnojit.addEventListener("click", function (e) {
-        operation = '*';
-        forDeistvAndHist();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '*';
+            forDeistvAndHist();}
     })
 
     delit.addEventListener("click", function () {
-        operation = '/';
-        forDeistvAndHist();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '/';
+            forDeistvAndHist();}
     })
 
     equal.addEventListener('click', function (e) {
