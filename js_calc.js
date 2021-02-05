@@ -10,88 +10,92 @@ window.onload = function () {
     let operation = '';
     let num1 = 0;
     let num = 0;
-    let history = [];
-
+    //let history = [];
 
 
     function vvod() {
-        let x = document.getElementById('arr').value;
+       /* let x = document.getElementById('number').value;
         if (x === null || x === "") {
             alert(" вы здесь если не ввели число \n                     или \n потому что хотите поменять знак действия");
             return false;
-        } else {
-            arr.push(Number(document.getElementById('arr').value));
-            document.getElementById('arr').value = '';
-        }
+        } else { */
+            arr.push(Number(document.getElementById('number').value));
+            document.getElementById('number').value = '';
+       // }
     }
 
 
     function vivod() {
         document.getElementById('result').innerHTML = result;
-        history = arr.join('');
-        document.getElementById('history').innerHTML = history;
+        document.getElementById('history').innerHTML = arr.join('');
     }
 
 
-    function forHist() {
-        history = arr.join('');
-        document.getElementById('history').innerHTML = history;
 
-        /*if (history[history.length - 1] !== 'string') {
-            history.push(operation);
-
-        } else {
-            history.pop();
-        }
-        history = history.join('');
-        document.getElementById('history').innerHTML = history;*/
-    }
-
-
-    function forDeistv() {
+    function forDeistvAndHist() {
         vvod();
-
         if (arr[arr.length - 1] !== 'string') {
             arr.push(operation);
             operation = '';
-        } else {
-            arr.pop();
         }
-        forHist();
+        /*else if (arr[arr.length - 1] === 'string' && arr[arr.length - 2] === 'string' )   {
+         delete arr[arr.length - 2];
+        }*/
+        operation = '';
+        document.getElementById('history').innerHTML = arr.join('');
     }
 
-
-    clear.addEventListener('click', function (e) {
+    function clearFunc() {
         arr = [];
-        history =[];
         num1 = 0;
         num = 0;
         result = 0;
+        operation = '';
         document.getElementById('result').innerHTML = '';
         document.getElementById('history').innerHTML = '';
+        document.getElementById('number').value = '';
+    }
+
+
+
+
+    clear.addEventListener('click', function (e) {
+        clearFunc();
     })
 
 
     plus.addEventListener("click", function (e) {
-        operation = '+';
-        forDeistv();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '+';
+            forDeistvAndHist();}
+
     })
 
     minus.addEventListener("click", function (e) {
-        operation = '-';
-        forDeistv();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '-';
+            forDeistvAndHist();}
     })
 
     umnojit.addEventListener("click", function (e) {
-        operation = '*';
-        forDeistv();
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
+
+        } else {operation = '*';
+            forDeistvAndHist();}
     })
 
     delit.addEventListener("click", function () {
-        operation = '/';
-        forDeistv();
-    })
+        if (document.getElementById('number').value === '') {
+            alert('введите число')
 
+        } else {operation = '/';
+            forDeistvAndHist();}
+    })
 
     equal.addEventListener('click', function (e) {
         vvod();
@@ -112,7 +116,14 @@ window.onload = function () {
                 } else if (operation === '*') {
                     num = num * num1;
                 } else if (operation === '/') {
-                    num = num1 / num;
+                    if (num === 0) {
+                        alert('на ноль делить нельзя');
+                        clearFunc();
+                        return false;
+                    } else {
+                        num = num1 / num;
+                    }
+
                 }
 
             }
