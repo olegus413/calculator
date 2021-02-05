@@ -10,18 +10,14 @@ window.onload = function () {
     let operation = '';
     let num1 = 0;
     let num = 0;
-    //let history = [];
+
 
 
     function vvod() {
-       /* let x = document.getElementById('number').value;
-        if (x === null || x === "") {
-            alert(" вы здесь если не ввели число \n                     или \n потому что хотите поменять знак действия");
-            return false;
-        } else { */
+
             arr.push(Number(document.getElementById('number').value));
             document.getElementById('number').value = '';
-       // }
+
     }
 
 
@@ -38,9 +34,7 @@ window.onload = function () {
             arr.push(operation);
             operation = '';
         }
-        /*else if (arr[arr.length - 1] === 'string' && arr[arr.length - 2] === 'string' )   {
-         delete arr[arr.length - 2];
-        }*/
+
         operation = '';
         document.getElementById('history').innerHTML = arr.join('');
     }
