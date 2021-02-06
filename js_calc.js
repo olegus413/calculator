@@ -31,15 +31,12 @@ window.onload = function () {
     }
 
 
-
-
     function forDeistvAndHist() {
         vvod();
-        if (arr[arr.length - 1] !== 'string') {
+        if (typeof arr[arr.length - 1] !== 'string') {
             arr.push(operation);
-            console.log(arr);
-        } else if (arr[arr.length - 1] === 'string' && arr[arr.length - 2] === 'string' )   {
-            delete arr[arr.length - 2];
+        } else {
+            arr[arr.length - 1] = operation;
         }
         operation = '';
         document.getElementById('history').innerHTML = arr.join('');
@@ -57,8 +54,6 @@ window.onload = function () {
         document.getElementById('history').innerHTML = '';
         document.getElementById('number').value = '';
     }
-
-
 
 
     clear.addEventListener('click', function (e) {
